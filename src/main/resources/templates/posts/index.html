@@ -55,7 +55,7 @@
 
             <ul th:each="post: ${posts}">
                 <div class="myPosts">
-                    <a th:href="@{/wall/{id}(id=${post.user.id})}" th:text="${post.user.username}"><li><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="50" height="50"></li>
+                    <a th:href="@{/wall/{id}(id=${post.user.id})}" th:text="${post.user.username}"><li><img th:src="@{${user.avatar}}" alt="placeholder" class="avatarSmall"></li>
                     </a>
                     <li th:text="${post.title}" >
                     <li th:text="${post.content}" >
