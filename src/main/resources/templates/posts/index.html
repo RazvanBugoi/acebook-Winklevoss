@@ -42,7 +42,7 @@
             
                         <div class="myPosts">
                 <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-                    <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="100" height="100">
+                    <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatar">
                     <p>Title: <input type="text" id="post-title" name="title"/></p>
                     <p>Content: <input type="text" id="post-content" name="content"/></p>
                     <p><input type="submit" id="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
@@ -51,7 +51,7 @@
 
             <ul th:each="post: ${posts}">
                 <div class="myPosts">
-                    <a href="/profile"><li><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="50" height="50"></li>
+                    <a href="/profile"><li><img th:src="@{${user.avatar}}" alt="placeholder" class="avatar"></li>
                     <li><b><span sec:authentication="name"></span></b></li></a>
                     <li th:text="${post.title}" >
                     <li th:text="${post.content}" >

@@ -133,6 +133,13 @@ a:link {
     border-top: none;
 }
 
+/* Styles the avatar */
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+}
+
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {opacity: 0;}

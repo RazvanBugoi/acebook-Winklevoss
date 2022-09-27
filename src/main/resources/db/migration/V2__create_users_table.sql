@@ -4,6 +4,7 @@ CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   username varchar(50) NOT NULL UNIQUE,
   password varchar(100) NOT NULL,
+  avatar TEXT NOT NULL,
   enabled boolean NOT NULL
 );
 

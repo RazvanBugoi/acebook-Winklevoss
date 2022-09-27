@@ -53,6 +53,10 @@ public class PostsController {
         model.addAttribute("likes", likes);
         model.addAttribute("like", new Post());
 
+        // Avatar
+        model.addAttribute("user", new User());
+
+
         return "posts/index";
     }
 
