@@ -34,28 +34,30 @@ public class LogOutTest {
   }
 
   @Test
-  public void logOutReturnsSignInPageForUser() {
+  public void logOutReturnsLogOutPageForUser() {
     // There's no post method for WebDriver unfortunately, only get
     driver.get("http://localhost:8080/signup");
     driver.findElement(By.id("email")).sendKeys("ash");
     driver.findElement(By.id("password")).sendKeys("123");
     driver.findElement(By.className("submit-btn")).click();
-    driver.get("http://localhost:8080/login");
-    driver.findElement(By.id("username")).sendKeys("ash");
-    driver.findElement(By.id("password")).sendKeys("123");
-    driver.findElement(By.className("submit-btn")).click();
-
-    driver.findElement(By.id("Logout")).click();
-    Assert.assertEquals("Sign In", driver.getTitle());
+    driver.get("http://localhost:8080/logout");
+    // This line is test clicking logout button
+    // driver.findElement(By.id("Logout")).clic
+    Assert.assertEquals(driver.getTitle(), "Confirm Log Out?");
   }
+  //
 
   @Test
   public void clickinglogOutOnLogOutPageLogsUserOut() {
     driver.get("http://localhost:8080/signup");
     driver.findElement(By.id("email")).click();
     driver.get("http://localhost:8080/logout");
-
-    driver.findElement(By.className("submit-btn")).click();
-    Assert.assertEquals("Sign In", driver.getTitle());
+    // findElement(By.id) didn't work for logout page, so used By.tagName for Log
+    // Out <button>
+    driver.findElement(By.tagName("button")).click();
+    // Tests title of page to equal log in page's
+    //
+    Assert.assertEquals(driver.getTitle(), "Please sign in");
   }
+
 }
