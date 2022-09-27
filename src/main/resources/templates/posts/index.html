@@ -8,10 +8,6 @@
     </head>
     <body>
         
-        <div class="title">
-            <h1>Posts</h1>
-        </div>
-        
         <nav> <!-- nav bar - subject to change -->
             <a href="/profile"><p>Profile</p></a>
             <a href="/friends"><p>Friends</p></a>
@@ -20,16 +16,22 @@
             <!-- Messages is not on navbar in mock-up, but subject to change (just here for convenience) -->
             <a href="/messages"><p>Messages</p></a>
         </nav>
+
+        <div class="title">
+            <h1>Posts</h1>
+        </div>
+        
         
         <div class="container"> <!-- Added container div for positioning body content - can move around -->
 
-            <div sec:authorize="isAuthenticated()">
-                <h2><span sec:authentication="name"></span></h2>
-            </div>
+            
 
             <div class="logout">
                 <!-- // Show user ID and username for debugging -->
-                <p style="margin-right: 68px;" th:text="'user ID = ' + ${id}"></p>
+                <!-- <p style="margin-right: 68px;" th:text="'user ID = ' + ${id}"></p> -->
+                <!-- <p style="margin-right: 68px;" :authorize="isAuthenticated()"> -->
+                <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatarSmall">
+                <a style="margin-right: 69px;" href="/profile"><span sec:authentication="name"></span></a>
                 <!-- Uncomment to see full session user object -->
                 <!-- <p th:text="'current user = ' + ${currentuser}"></p> -->
               </div>
@@ -40,7 +42,7 @@
                 </form>
             </div>
             
-                        <div class="myPosts">
+            <div class="postBody">
                 <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
                     <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatar">
                     <p>Title: <input type="text" id="post-title" name="title"/></p>
@@ -51,7 +53,7 @@
 
             <ul th:each="post: ${posts}">
                 <div class="myPosts">
-                    <a href="/profile"><li><img th:src="@{${user.avatar}}" alt="placeholder" class="avatar"></li>
+                    <a href="/profile"><li><img th:src="@{${user.avatar}}" alt="placeholder" class="avatarSmall"></li>
                     <li><b><span sec:authentication="name"></span></b></li></a>
                     <li th:text="${post.title}" >
                     <li th:text="${post.content}" >

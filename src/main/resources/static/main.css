@@ -37,14 +37,26 @@ body {
     margin: auto;
 }
 
+.postBody {
+    width: 320px;
+    padding: 10px;
+    background-color: #d7851f;
+    border: 5px solid rgb(159, 89, 2);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    margin: auto;
+    /*transform: translateZ();
+    transition: .5s;*/
+}
 
 .myPosts {
     width: 320px;
     padding: 10px;
     background-color: #d7851f;
     border: 5px solid rgb(159, 89, 2);
-    /* border-radius: 25px; */
     margin: auto;
+    transform: translateZ(10px);
+    transition: .5s;
 }
 
 .profile {
@@ -137,6 +149,12 @@ a:link {
 .avatar {
     width: 50px;
     height: 50px;
+    border-radius: 10%;
+}
+
+.avatarSmall {
+    width: 30px;
+    height: 30px;
     border-radius: 10%;
 }
 
