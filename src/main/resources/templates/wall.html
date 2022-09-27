@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="/main.css" />
     </head>
     <body>
+        <div class="title">
+            <h1>Wall</h1>
+        </div>
         
         <nav> <!-- nav bar - subject to change -->
             <a href="/profile"><p>Profile</p></a>
@@ -17,22 +20,16 @@
             <!-- Messages is not on navbar in mock-up, but subject to change (just here for convenience) -->
             <a href="/messages"><p>Messages</p></a>
         </nav>
-
-        <div class="title">
-            <h1>Posts</h1>
-        </div>
-        
         
         <div class="container"> <!-- Added container div for positioning body content - can move around -->
 
-            
+            <div sec:authorize="isAuthenticated()">
+                <h2><span th:value="${user.findByid()} + '`s wall'"></span></h2>
+            </div>
 
             <div class="logout">
                 <!-- // Show user ID and username for debugging -->
-                <!-- <p style="margin-right: 68px;" th:text="'user ID = ' + ${id}"></p> -->
-                <!-- <p style="margin-right: 68px;" :authorize="isAuthenticated()"> -->
-                <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatarSmall">
-                <a style="margin-right: 69px;" href="/profile"><span sec:authentication="name"></span></a>
+                <p style="margin-right: 68px;" th:text="'user ID = ' + ${id}"></p>
                 <!-- Uncomment to see full session user object -->
                 <!-- <p th:text="'current user = ' + ${currentuser}"></p> -->
               </div>
@@ -42,20 +39,11 @@
                     <p><input type="submit" id="Logout" value="Logout" /></p>
                 </form>
             </div>
-            
-            <div class="postBody">
-                <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-                    <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatar">
-                    <p>Title: <input type="text" id="post-title" name="title"/></p>
-                    <p>Content: <input type="text" id="post-content" name="content"/></p>
-                    <p><input type="submit" id="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-                </form>
-            </div>
 
-            <ul th:each="post: ${posts}">
+            <ul th:each="post: ${posts}" th:if="${post.user.id.toString().equals(#httpServletRequest.requestURI.substring(#httpServletRequest.requestURI.lastIndexOf('/')+1))}">
                 <div class="myPosts">
-                    <a href="'/wall/' + ${post.user.id}" th:text="${post.user.username}"><li><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="50" height="50"></li>
-                    </a>
+                    <a href="'/wall/' + ${post.user.id}"><li><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="50" height="50"></li>
+                    <li><b><span th:text="${post.user.username}"></span></b></li></a>
                     <li th:text="${post.title}" >
                     <li th:text="${post.content}" >
                     <li th:text="'posted at: ' + ${#dates.format(post.time_posted, 'HH:mm:ss')} + ' on: ' + ${#dates.format(post.time_posted, 'dd-MM-yyyy')}" style="font-size:small;"></li>
@@ -69,8 +57,5 @@
                 </div>
 
             </ul>
-
-        </div> <!-- End of container div -->
-
     </body>
 </html>
