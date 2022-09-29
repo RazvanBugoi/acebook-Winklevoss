@@ -35,7 +35,7 @@
                             <span class="search">
                             <div style="display: flex; flex-direction: row; gap: 0px;">
                                 <div th:href="'/profile/' + ${user.username}" style="display: flex; height: 53px; width: 20px; margin-right: 0px;" th:class="${user.id} + 'A'" onmousedown="document.getElementById('myInput').click()">
-                                    <img style="height: 53px;" src="default-avatar.jpeg"><a th:href="'/profile/' + ${user.username}">
+                                    <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatarSmall"><a th:href="'/profile/' + ${user.username}">
                                 </div>
                                 <div style="display: flex; justify-content: end; overflow: hidden; padding-top:-50px; height: 53px; width: 100%; margin-left: 0px;" th:class="${user.id} + 'B'">
                                     <p style="position: absolute; left: 1; top: 1; margin-left: -50px; margin-top: 6px;" th:text="${user.username}" class="search"></p></a>
@@ -50,7 +50,7 @@
                 <div style="min-width: 100px;" class ="notifications">
                     <img style="height: 44px;" th:src="@{/notificationsbell.png}"/>
                 </div>
-                <a th:href="'/profile/' + ${friendsservice.findById(id).username}"><img style="height: 39px; margin-top: 5px;"; src="default-avatar.jpeg"></a>
+                <a th:href="'/profile/' + ${friendsservice.findById(id).username}"><img th:src="@{${user.avatar}}" alt="your profile picture" class="avatarSmall"></a>
                 <div class="logout">
                 <!-- // Show user ID and username for debugging (has to go above logout button or it will cover it) -->
                 <p style="margin-top: 60px; background-color: rgb(222, 124, 4);" th:text="'User ID: ' + ${id}"></p>
@@ -68,11 +68,12 @@
             
             <main>
 
-                <div class="myPosts">
+                <div class="postForm">
                     <form action="#" id="post_content_form" th:action="@{/posts}" th:object="${post}" method="post">
-                        <img class="circle" src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="40" height="40">
+                        <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatar">
                         <textarea id="post-content" name="content" rows="1" cols="50" th:object="${user}" th:placeholder="'What\'s on your mind, ' + ${#authentication.getPrincipal().getUsername()} + '?'"></textarea>
                         <input type="hidden" name="title" th:value="Title"/>
+                        <input type="file" />
                         <!-- <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="40" height="40">
                         <p>Title: <input type="text" id="post-title" name="title"/></p>
                         <textarea id="post-content" name="content" rows="5" cols="33" th:object="${user}" th:text="'What\'s on your mind, ' + ${#authentication.getPrincipal().getUsername()} + '?'" > </textarea>
@@ -85,7 +86,7 @@
                 <div th:each="post: ${posts}">
                     <div class="myPosts">
                         <div class="post_heading">
-                            <img class="circle" src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="40" height="40">
+                            <img th:src="@{${user.avatar}}" alt="your profile picture" class="avatarSmall">
                             <a th:href="@{/wall/{id}(id=${post.user.id})}" th:text="${post.user.username}"></a>
                             <p id="post_time" th:text="${#dates.format(post.time_posted, 'HH:mm:ss')}"></p>
                             <p id="post_date" th:text="${#dates.format(post.time_posted, 'dd-MM-yyyy')}"></p>

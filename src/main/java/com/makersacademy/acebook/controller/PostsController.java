@@ -2,11 +2,9 @@ package com.makersacademy.acebook.controller;
 
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
-import com.makersacademy.acebook.model.Images;
 import com.makersacademy.acebook.model.Like;
 import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.repository.PostRepository;
-import com.makersacademy.acebook.repository.ImagesRepository;
 import com.makersacademy.acebook.repository.LikeRepository;
 import com.makersacademy.acebook.repository.UserRepository;
 import com.makersacademy.acebook.repository.CommentRepository;

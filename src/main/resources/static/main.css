@@ -91,6 +91,15 @@ body {
     margin: auto;
 }
 
+.postForm {
+    max-width: 526px;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #d7851f;
+    border: 1px solid rgb(159, 89, 2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
 .myPosts {
     max-width: 526px;
@@ -98,6 +107,13 @@ body {
     margin: 10px auto;
     background-color: #d7851f;
     border: 1px solid rgb(159, 89, 2);
+    transform: translateZ(10px);
+    transition: .5s;
+}
+
+.myPosts:hover {
+    background-color: #8e5a1b;
+    transform: translateX(10px);
 }
 
 #post_content_form {
@@ -282,8 +298,8 @@ a:link {
 }
 
 .avatarSmall {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 10%;
 }
 

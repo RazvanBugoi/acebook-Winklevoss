@@ -85,7 +85,7 @@
 
             <ul th:each="post: ${posts}" th:if="${post.user.id.toString().equals(#httpServletRequest.requestURI.substring(#httpServletRequest.requestURI.lastIndexOf('/')+1))}">
                 <div class="myPosts">
-                    <a th:href="'/wall/' + ${post.user.id}"><li><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg" alt="placeholder" width="50" height="50"></li>
+                    <a th:href="'/wall/' + ${post.user.id}"><li><img th:src="@{${user.avatar}}" alt="your profile picture" class="avatar"></li>
                     <li><b><span th:text="${post.user.username}"></span></b></li></a>
                     <li th:text="${post.title}" >
                     <li th:text="${post.content}" >
