@@ -2,8 +2,10 @@ package com.makersacademy.acebook.controller;
 
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
+import com.makersacademy.acebook.model.Images;
 import com.makersacademy.acebook.model.Like;
 import com.makersacademy.acebook.repository.PostRepository;
+import com.makersacademy.acebook.repository.ImagesRepository;
 import com.makersacademy.acebook.repository.LikeRepository;
 import com.makersacademy.acebook.repository.UserRepository;
 
@@ -31,6 +33,9 @@ public class PostsController {
     @Autowired
     LikeRepository likerepository;
 
+    @Autowired
+    ImagesRepository imagesRepository;
+
     @GetMapping("/posts")
     public String index(Model model, HttpSession session) {
         // Get posts
@@ -56,7 +61,8 @@ public class PostsController {
         // Avatar
         model.addAttribute("user", new User());
 
-
+        // Images
+        model.addAttribute("image", new Images());
         return "posts/index";
     }
 

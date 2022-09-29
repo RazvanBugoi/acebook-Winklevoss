@@ -18,7 +18,6 @@ public class Images {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String imageName;
-    private String imageType;
     private Timestamp time_posted;
 
     @Lob
@@ -27,27 +26,16 @@ public class Images {
     public Images() {}
 
     public Images(String imageName, String imageType, byte[] data) {
-        super();
         this.imageName = imageName;
-        this.imageType = imageType;
-        this.data = data;
     }
 
     public Long getId() {return id;}
 
     public String getTitle() {return this.imageName;}
 
-    public String getType() {return this.imageType;}
-
-    public byte[] getContent() {return this.data;}
-
     public Date getTimePosted() { return time_posted;}
 
     public void setTitle(String imageName) {this.imageName = imageName;}
-
-    public String setType(String imageType) {return this.imageType = imageType;}
-
-    public void setContent(byte[] data) {this.data = data;}
 
     public void setTimePosted(Timestamp time_posted) {this.time_posted = time_posted;}
 }
