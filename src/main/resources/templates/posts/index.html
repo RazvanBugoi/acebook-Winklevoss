@@ -119,11 +119,13 @@
                                     </form>
                                 </div>
                                 
-                                <ul id="show_comments" th:each="comment: ${comments}" th:if="${comment.postid} == ${post.id}">
-                                    <li id="comment_author" th:text="${#authentication.getPrincipal().getUsername()}"></li>
-                                    <li id="comment_message" th:text="${comment.content}"> </li>
-                                    <li id="comment_time" th:text="${#dates.format(comment.time_posted, 'HH:mm:ss')}"></li>
-                                </ul>
+                                <div id="show_comments" th:each="comment: ${comments}" th:if="${comment.postid} == ${post.id}">
+                                    <ul class="listed_comments">
+                                        <li id="comment_author" th:text="${#authentication.getPrincipal().getUsername()} + ':' "></li>
+                                        <li id="comment_message" th:text="${comment.content}"> </li>
+                                        <li id="comment_time" th:text="${#dates.format(comment.time_posted, 'HH:mm:ss')}"></li>
+                                    </ul>
+                                </div>
                             </div>
     
                     </div>
