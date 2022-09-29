@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS images;
+
+CREATE TABLE images (
+  id BIGSERIAL PRIMARY KEY,
+  data bytea NOT NULL,
+  imageName TEXT NOT NULL,
+  imageType TEXT NOT NULL,
+  time_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

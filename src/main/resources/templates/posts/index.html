@@ -51,6 +51,10 @@
                     <p>Content: <input type="text" id="post-content" name="content"/></p>
                     <p><input type="submit" id="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
                 </form>
+                <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles} enctype="multipart/form-data">
+                    <input type="file" name="files" />
+                    <button type="submit">Submit</button>
+                </form>
             </div>
 
             <ul th:each="post: ${posts}">

@@ -42,8 +42,8 @@ body {
     padding: 10px;
     background-color: #d7851f;
     border: 5px solid rgb(159, 89, 2);
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     margin: auto;
     /*transform: translateZ();
     transition: .5s;*/
@@ -57,6 +57,11 @@ body {
     margin: auto;
     transform: translateZ(10px);
     transition: .5s;
+}
+
+.myPosts:hover {
+    background-color: #8e5a1b;
+    transform: translateX(10px);
 }
 
 .profile {
