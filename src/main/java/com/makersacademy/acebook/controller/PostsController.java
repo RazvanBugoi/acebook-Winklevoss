@@ -4,10 +4,13 @@ import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.model.Images;
 import com.makersacademy.acebook.model.Like;
+import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.ImagesRepository;
 import com.makersacademy.acebook.repository.LikeRepository;
 import com.makersacademy.acebook.repository.UserRepository;
+import com.makersacademy.acebook.repository.CommentRepository;
+import com.makersacademy.acebook.services.FriendsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +37,10 @@ public class PostsController {
     LikeRepository likerepository;
 
     @Autowired
-    ImagesRepository imagesRepository;
+    FriendsService friendsService;
+
+    @Autowired
+    CommentRepository comrepository;
 
     @GetMapping("/posts")
     public String index(Model model, HttpSession session) {
@@ -58,11 +64,17 @@ public class PostsController {
         model.addAttribute("likes", likes);
         model.addAttribute("like", new Post());
 
-        // Avatar
-        model.addAttribute("user", new User());
+        Iterable<Comment> comments = comrepository.findAll();
+        model.addAttribute("comments", comments);
+        model.addAttribute("comment", new Comment());
 
-        // Images
-        model.addAttribute("image", new Images());
+        // Get friends service (for friends methods)
+        model.addAttribute("friendsservice", friendsService);
+        // Get user object
+        model.addAttribute("user", new User());
+        // Get non-blocked users (for search bar)
+        model.addAttribute("allusers", userRepository.getNonBlockedUsers(ID));
+
         return "posts/index";
     }
 
