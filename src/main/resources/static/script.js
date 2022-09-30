@@ -29,51 +29,8 @@ function openTab(event, tabName) {
   document.getElementById(tabName).style.display = "block";
   event.currentTarget.className += "active";
 }
-
-// Below 2 are for getting friends of friends to work...
-function deleteNoMutualDiv(divId, mutualCount) {
-  if (mutualCount == 0) {
-    var div = document.getElementById(divId);
-    div.parentElement.remove();
-  }
-}
-
-function cleanFriendsOfFriends() {
-  var div = document.getElementById("0");
-  var p1 = document.getElementById("P1")
-  if (div.innerHTML.trim().length <= 41) {
-    p1.textContent = "No recommendations.";
-    div.remove();
-  }
-}
-
-// Make tool tip appear on mouse hover
-var tooltipSpan = document.getElementById('tooltip-span');
-window.onmousemove = function (e) {
-  var x = e.clientX,
-      y = e.clientY;
-  tooltipSpan.style.top = (y + 20) + 'px';
-  tooltipSpan.style.left = (x + 20) + 'px';
-};
-
-function getSearchDropdown() {
-  function show() {
-    document.getElementById("searchDropdown").classList.toggle("show");
-  }
-  // if (onmouseup) {
-    setTimeout(show, 120);
-  // }
-};
-
-window.addEventListener('load', function() {
-  document.querySelector('input[type="file"]').addEventListener('change', function() {
-      if (this.files && this.files[0]) {
-          var img = document.querySelector('img');
-          img.onload = () => {
-              URL.revokeObjectURL(img.src);  // no longer needed, free memory
-          }
-
-          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-      }
-  });
+// Used For DM functionality
+// Focus search form
+$("#js-show-search-form").click(function(e){
+  $(e.target).closest("form").find("input").focus();
 });

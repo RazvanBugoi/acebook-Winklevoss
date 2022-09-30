@@ -1,22 +1,16 @@
 nav {
     display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    height: 45px;
-    width: 100%;
-    margin-top: -8px;
-    margin-left: -8px;
+    /* gap determines spacing between elements on nav bar */
+    gap: 10px;
+    /* No top margin was giving a big space */
+    margin-top: -20px;
     /* Padding-inline indents elements from the left */
     padding-top: -10px;
     padding-inline: 50px;
-    /* gap determines spacing between elements on nav bar with flex */
-    gap: 15px;
-    /* z-index determines stacking order of elements on a page, increasing the number brings to the front */
-    z-index: 0;
-    background-color: rgb(222, 124, 4);
-    border: 3px solid rgb(159, 89, 2);
-}
+    /* Color set to dark orange */
+    background-color: #de7c04c9;
+    padding-top: -10px;
+    height: 45px;
 
 body {
     padding-top: 25px;
